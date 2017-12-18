@@ -1,0 +1,35 @@
+{
+  "name": "goldbach",
+  "version": "1.0.0",
+  "description": "A web application for playing around with the Goldbach conjecture",
+  "main": "webServer.js",
+  "scripts": {
+    "test": "echo Satisfy your curiosity by going to http://localhost:3000 in your browser",
+    "jshint": "./node_modules/.bin/jshint --config .jshintrc --exclude=node_modules . || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ispashayev/Goldbach.git"
+  },
+  "keywords": [
+    "goldbach"
+  ],
+  "author": "Iskandar Pashayev <pashayev@stanford.edu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ispashayev/Goldbach/issues"
+  },
+  "homepage": "https://github.com/ispashayev/Goldbach#readme",
+  "dependencies": {
+    "angular": "^1.6.6",
+    "angular-animate": "^1.6.6",
+    "angular-aria": "^1.6.6",
+    "angular-material": "^1.1.5",
+    "angular-messages": "^1.6.6",
+    "angular-mocks": "^1.6.6",
+    "angular-route": "^1.6.6",
+    "angular-sanitize": "^1.6.6",
+    "express": "^4.16.2",
+    "jshint": "^2.9.5"
+  }
+}
