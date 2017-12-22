@@ -4,8 +4,8 @@
     "browser"       : true,   // Standard browser globals e.g. `window`, `document`.
 
 
-    "globals": { // Globals variables.
-        "cs142App": true,
+    "globals": { // Global variables.
+        "CuriositySeriesApp": true,
         "angular": true,
         "browser": true,
         "element": true,

@@ -1,0 +1,15 @@
+body {
+  font-family: 'Open Sans';
+}
+
+.curiosities-list-pane {
+  margin-left: 10px;
+}
+
+.curiosity-content-pane {
+  margin-left: 10px;
+}
+
+.curiosity-series-welcome {
+  width: 50%;
+}

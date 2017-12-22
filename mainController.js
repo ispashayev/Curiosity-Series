@@ -1,18 +1,38 @@
 'use strict';
 
-var gcApp = angular.module('gcApp', []);
+var CuriositySeriesApp = angular.module('CuriositySeriesApp', ['ngRoute', 'ngMaterial', 'ngResource']);
 
-gcApp.controller('MainController', ['$scope', function($scope) {
+CuriositySeriesApp.config(['$routeProvider',
+  function ($routeProvider) {
+    $routeProvider.
+      when('/curiosities', {
+        templateUrl: 'components/curiosities/curiosities.html',
+        controller: 'CuriositiesController'
+      }).
+      when('/curiosities/goldbach', {
+        templateUrl: 'components/goldbach/goldbach.html',
+        controller: 'GoldbachController'
+      }).
+      otherwise({
+        redirectTo: '/curiosities'
+      });
+  }]);
+
+CuriositySeriesApp.controller('MainController', ['$scope', '$location',
+  function($scope, $location) {
     $scope.main = {};
-    $scope.main.title = 'The Goldbach Conjecture';
-    $scope.even_num = 0;
-    $scope.result = undefined;
+    $scope.main.title = 'Curiosity Series';
+    $scope.main.curiosities = [];
 
-    $scope.gbSplit = function(n) {
-      if (n % 2 !== 0) {
-        $scope.result = "Number is not even.";
-      } else {
-        $scope.result = "Number is even.";
+    $scope.main.navigate = function(curiosityLink) {
+      /* TODO: Verify validity of curiosityLink. Display dropdown from top of
+               window if the link does not exit. */
+      switch (curiosityLink) {
+        case "goldbach":
+          $location.path("/curiosities/goldbach");
+          break;
+        default:
+          console.log("That doesn't exist.");
       }
     };
 
