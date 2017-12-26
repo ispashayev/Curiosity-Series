@@ -1,20 +1,33 @@
 ! Computes a set of prime numbers
+!
+! Takes in a command-line input (REQUIRED!). Parses this input as an integer
+! and generates that number of prime numbers. This algorithm used the sieve
+! of Eratosthenes to generate primes. Since the upper bound of candidate
+! primes must be known beforehand, we use the Prime Number Theorem to
+! approximate the upper bound (via Newton's Method). Consequently, this
+! algorithm isn't guaranteed to return the exact number of requested primes.
 
 program sieveOfEratosthenes
   implicit none
 
   ! Type declarations
-  integer, dimension (:), allocatable :: primes
-  integer :: num_primes = 1000000, num_primes_found = 0
+  integer, pointer :: primes (:)
+  integer :: num_primes, num_primes_found = 0
+  character (20) :: num_primes_arg
 
-  logical, dimension (:), allocatable :: sieve ! a dynamic array for the sieve of eratosthenes
-  integer :: i = 1, j, base_prime = 2
-  integer :: chunk_size, error, end
+  logical, pointer :: sieve (:) ! a dynamic array for the sieve of eratosthenes
+  integer :: i, error, start, end
+  integer :: base_prime = 2
+  integer :: num_chunks = 1, chunk_size
+
+  ! Read command-line argument specifying number of primes to compute
+  call get_command_argument(1, num_primes_arg)
+  read (num_primes_arg, fmt="(i20)") num_primes
 
   ! Approximate the chunk size for allocations using the Prime Number Theorem
   call pnt_approximation(num_primes, chunk_size)
   
-  print *, "Chunk size set by subroutine:", chunk_size
+  print *, "Interval size estimate using prime number theorem:", chunk_size
   
   ! Allocate the array and set the upper bound
   allocate(primes(num_primes), stat=error)
@@ -29,32 +42,40 @@ program sieveOfEratosthenes
     stop
   end if
 
+  start = 1
   end = chunk_size
-  sieve(i:end) = .true. ! initialize all array elements to true
-  sieve(i) = .false. ! 1 is not a prime number
+  sieve(start:end) = .true. ! initialize all array elements to true
+  sieve(start) = .false. ! 1 is not a prime number
 
-  ! do 10
-    do 20 j = base_prime, end
-      if (sieve(j)) then
-        num_primes_found = num_primes_found + 1
-        primes(num_primes_found) = j
-        sieve(2*j:end:j) = .false. ! TODO: offset the beginning of this by the number of chunks that have been allocated
-        if (num_primes_found == num_primes) then
-          exit
-        end if
+  do 20 i = base_prime, end
+    if (sieve(i)) then
+      num_primes_found = num_primes_found + 1
+      primes(num_primes_found) = i
+      sieve(2*i:end:i) = .false.
+      if (num_primes_found == num_primes) then
+        exit
       end if
-    20 continue
-    ! TODO: Allocate more memory here
-  ! 10 continue
+    end if
+  20 continue
 
-  do 30 j = 1, num_primes_found
-    print *, primes(j)
+  do 30 i = 1, num_primes_found
+    print *, primes(i)
   30 continue
 
   print *, ""
   print *, "Total number of primes found:", num_primes_found
 
-  deallocate(sieve)
+  deallocate(primes, stat=error)
+  if (error .ne. 0) then
+    print *, "Unable to free memory for primes array."
+    stop
+  end if
+
+  deallocate(sieve, stat=error)
+  if (error .ne. 0) then
+    print *, "Unable to free memory for sieve of Eratosthenes."
+    stop
+  end if
 
 end program sieveOfEratosthenes
 
