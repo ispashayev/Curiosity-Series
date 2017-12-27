@@ -4,11 +4,20 @@ var express = require('express');
 var portno = 3000;
 var app = express();
 
-/* TODO: Get rid of this monstrosity */
-var primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59,
-              61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131,
-              137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197,
-              199];
+var primes;
+
+var fs = require('fs');
+fs.readFile("data/primes.dat", function (error, dataBuffer) {
+  console.log("Parsing primes file...");
+  if (error) {
+    console.log("Error opening primes file.");
+  } else {
+    primes = dataBuffer.toString().split("\n").map(function (p) {
+      return parseInt(p);
+    });
+    console.log("Done.");
+  }
+});
 
 /* We have the express static module do all the work for us. */
 app.use(express.static(__dirname));
@@ -27,11 +36,13 @@ app.get('/curiosities', function (request, response) {
 
 function getPrimeStructure(n) {
   var result = {
+    n: n,
     success: false,
     message: 'Unable to find prime structure'
   };
 
   /* Simple brute force search. */
+  /* Maybe can optimize this by start at (n/2, n/2) (or around it)? */
   for (var i = 0; i < primes.length; i++) {
     for (var j = i; j < primes.length; j++) {
       if (primes[i] + primes[j] === n) {
@@ -39,7 +50,7 @@ function getPrimeStructure(n) {
         result.primeTwo = primes[j];
         result.message = 'Successfully found the Goldbach Factors';
         result.success = true;
-        break;
+        return result;
       }
     }
   }

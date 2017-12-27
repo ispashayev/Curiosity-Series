@@ -1,22 +1,37 @@
-<h1>The Goldbach Conjecture</h1>
+<h1 class=curiosity-title>The Goldbach Conjecture</h1>
 <div>
   Any even number can be expressed as the sum of two primes. We define this
   pair of primes as the <b>Goldbach Factors</b>. Test it out yourself!
 </div>
 <br>
-<div>
-  <label>
-    Enter an even number:
-    <input type="text" ng-model="main.goldbach.n">
-  </label>
+<div class="goldbach-factorization-history" ng-show="main.goldbach.history.length > 0">
+  Previous queries:
+  <br>
+  <div ng-repeat="prevResult in main.goldbach.history">
+    {{prevResult.n}} = {{prevResult.primeOne}} + {{prevResult.primeTwo}}
+  </div>
 </div>
-<md-button class="md-raised md-primary" ng-click="main.goldbach.gbSplit()">
-  Compute prime pair!
-</md-button>
-<div ng-show="!main.goldbach.results.success">
-  {{main.goldbach.results.message}}
+<div class="goldbach-factorizer">
+  <div>
+    <label>
+      Enter an even number:
+      <input type="text" ng-model="main.goldbach.n">
+    </label>
+  </div>
+  <md-button class="md-raised md-primary" ng-click="main.goldbach.gbSplit()">
+    Compute prime pair!
+  </md-button>
+  <div ng-show="!main.goldbach.recentResult.success">
+    {{main.goldbach.recentResult.message}}
+  </div>
+  <div ng-show="main.goldbach.recentResult.success">
+    The Goldbach factors are {{main.goldbach.recentResult.primeOne}} and
+    {{main.goldbach.recentResult.primeTwo}}.
+  </div>
 </div>
-<div ng-show="main.goldbach.results.success">
-  The Goldbach factors are {{main.goldbach.results.primeOne}} and
-  {{main.goldbach.results.primeTwo}}.
-</div>
+<br>
+<div curiosityMath="main.goldbach.textAfter1"></div>
+<br>
+<div curiosityMath="main.goldbach.textAfter2"></div>
+<br>
+<div curiosityMath="main.goldbach.textAfter3"></div>
