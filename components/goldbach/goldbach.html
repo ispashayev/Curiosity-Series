@@ -30,8 +30,26 @@
   </div>
 </div>
 <br>
-<div curiosityMath="main.goldbach.textAfter1"></div>
+<div>
+  It's interesting to note that the Goldbach conjecture implies the
+  existence of a function $f$ that maps a pair of primes $(p,q)$ to an even
+  number $n$. However, such a function cannot be a one-to-one mapping.
+</div>
 <br>
-<div curiosityMath="main.goldbach.textAfter2"></div>
+<div>
+  Take for example the number 14. There are two pairs of primes such that
+  their sum is equal to 14:
+  $$
+  (3,11): 3 + 11 = 14 \\
+  (7,7): 7 + 7 = 14
+  $$
+  This implies that $f(3,11) = f(7,7) = 14$.
+</div>
 <br>
-<div curiosityMath="main.goldbach.textAfter3"></div>
+<div>
+  In math, we call a one-to-one mapping a bijective function, or just a
+  bijection. We care about bijections because their inverses map to
+  exactly one element. However, in our case there is no straightforward
+  way of inverting $f$. Every even number must have at least one prime
+  pair solutions. Such a function is said to be surjective.
+</div>

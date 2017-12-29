@@ -1,7 +1,12 @@
 'use strict';
 
-CuriositySeriesApp.controller('GoldbachController', ['$scope', '$resource',
-  function ($scope, $resource) {
+CuriositySeriesApp.controller('GoldbachController', ['$scope', '$resource', '$rootScope',
+  function ($scope, $resource, $rootScope) {
+
+    $rootScope.$watch(function () {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+      return true;
+    });
 
     $scope.main.goldbach = { n: 0, history: [] };
 
@@ -40,25 +45,5 @@ CuriositySeriesApp.controller('GoldbachController', ['$scope', '$resource',
       });
 
     };
-
-    $scope.main.goldbach.textAfter1 =
-      "It's interesting to note that the Goldbach conjecture implies the \
-      existence of a function $f$ that maps a pair of primes (p,q) to an even \
-      number n. However, such a function cannot be a one-to-one mapping."
-
-    $scope.main.goldbach.textAfter2 =
-      "Take for example the number 14. There are two pairs of primes such that \
-      their sum is equal to 14: \
-      $$ \
-      (3,11): 3 + 11 = 14 \
-      (7,7): 7 + 7 = 14 \
-      $$"
-
-    $scope.main.goldbach.textAfter3 =
-      "In math, we call a one-to-one mapping a bijective function, or just a \
-      bijection. We care about bijections because their inverses map to \
-      exactly one element. However, in our case there is no straightforward \
-      way of inverting $f$. Every even number must have at least one prime \
-      pair solutions. Such a function is said to be surjective."
 
   }]);

@@ -2,19 +2,6 @@
 
 var CuriositySeriesApp = angular.module('CuriositySeriesApp', ['ngRoute', 'ngMaterial', 'ngResource']);
 
-CuriositySeriesApp.directive("curiosityMath", function () {
-  return {
-    restrict: "A",
-    controller: ["$scope", "$element", "$attrs",
-      function($scope, $element, $attrs) {
-        $scope.$watch($attrs.curiosityMath, function(texExpression) {
-          $element.html(texExpression);
-          MathJax.Hub.Queue(["Typeset", MathJax.Hub, $element[0]]);
-        });
-      }]
-    };
-});
-
 CuriositySeriesApp.config(['$routeProvider',
   function ($routeProvider) {
     $routeProvider.
