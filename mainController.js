@@ -5,6 +5,10 @@ var CuriositySeriesApp = angular.module('CuriositySeriesApp', ['ngRoute', 'ngMat
 CuriositySeriesApp.config(['$routeProvider',
   function ($routeProvider) {
     $routeProvider.
+      when('/home', {
+        templateUrl: 'components/home/home.html',
+        controller: 'HomeController'
+      }).
       when('/curiosities', {
         templateUrl: 'components/curiosities/curiosities.html',
         controller: 'CuriositiesController'
@@ -14,7 +18,7 @@ CuriositySeriesApp.config(['$routeProvider',
         controller: 'GoldbachController'
       }).
       otherwise({
-        redirectTo: '/curiosities'
+        redirectTo: '/home'
       });
   }]);
 

@@ -27,7 +27,7 @@ CuriositySeriesApp.controller('GoldbachController', ['$scope', '$resource', '$ro
       }
 
       /* Reset the results for the Goldbach structure. */
-      $scope.main.goldbach.recentResult = $scope.main.goldbach.resetResults;
+      $scope.main.goldbach.recentResult = $scope.main.goldbach.resetResults();
 
       /* Validate the number submitted by the user. */
       if ($scope.main.goldbach.n % 2 !== 0) {
