@@ -25,11 +25,16 @@ app.use(express.static(__dirname));
 app.get('/curiosities', function (request, response) {
   /* TODO: Implement this with a NoSQL database (i.e. MongoDB) */
   var curiosities = [];
-  var goldbach = {
-    link: 'goldbach',
-    name: 'Goldbach Conjecture'
+  var goldbachConjecture = {
+    link: "goldbach-conjecture",
+    name: "Goldbach Conjecture"
   };
-  curiosities.push(goldbach);
+  var riemannHypothesis = {
+    link: "riemann-hypothesis",
+    name: "Riemann Hypothesis"
+  }
+  curiosities.push(goldbachConjecture);
+  curiosities.push(riemannHypothesis);
 
   response.status(200).send(curiosities);
 });

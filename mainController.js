@@ -1,24 +1,28 @@
 'use strict';
 
-var CuriositySeriesApp = angular.module('CuriositySeriesApp', ['ngRoute', 'ngMaterial', 'ngResource']);
+var CuriositySeriesApp = angular.module("CuriositySeriesApp", ["ngRoute", "ngMaterial", "ngResource"]);
 
-CuriositySeriesApp.config(['$routeProvider',
+CuriositySeriesApp.config(["$routeProvider",
   function ($routeProvider) {
     $routeProvider.
-      when('/home', {
-        templateUrl: 'components/home/home.html',
-        controller: 'HomeController'
+      when("/home", {
+        templateUrl: "components/home/home.html",
+        controller: "HomeController"
       }).
-      when('/curiosities', {
-        templateUrl: 'components/curiosities/curiosities.html',
-        controller: 'CuriositiesController'
+      when("/curiosities", {
+        templateUrl: "components/curiosities/curiosities.html",
+        controller: "CuriositiesController"
       }).
-      when('/curiosities/goldbach', {
-        templateUrl: 'components/goldbach/goldbach.html',
-        controller: 'GoldbachController'
+      when("/curiosities/goldbach-conjecture", {
+        templateUrl: "components/goldbach-conjecture/goldbach-conjecture.html",
+        controller: "GoldbachConjectureController"
+      }).
+      when("/curiosities/riemann-hypothesis", {
+        templateUrl: "components/riemann-hypothesis/riemann-hypothesis.html",
+        controller: "RiemannHypothesisController"
       }).
       otherwise({
-        redirectTo: '/home'
+        redirectTo: "/home"
       });
   }]);
 
@@ -30,8 +34,11 @@ CuriositySeriesApp.controller('MainController', ['$scope', '$location',
 
     $scope.main.navigate = function(curiosityLink) {
       switch (curiosityLink) {
-        case "goldbach":
-          $location.path("/curiosities/goldbach");
+        case "goldbach-conjecture":
+          $location.path("/curiosities/goldbach-conjecture");
+          break;
+        case "riemann-hypothesis":
+          $location.path("/curiosities/riemann-hypothesis");
           break;
         default:
           console.log("That doesn't exist.");

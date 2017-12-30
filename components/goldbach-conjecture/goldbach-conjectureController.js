@@ -1,6 +1,6 @@
 'use strict';
 
-CuriositySeriesApp.controller('GoldbachController', ['$scope', '$resource', '$rootScope',
+CuriositySeriesApp.controller('GoldbachConjectureController', ['$scope', '$resource', '$rootScope',
   function ($scope, $resource, $rootScope) {
 
     $rootScope.$watch(function () {
