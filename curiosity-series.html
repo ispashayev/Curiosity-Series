@@ -57,14 +57,14 @@
 
     <md-toolbar layout="row">
       <span flex="" class="toolbar-header">
-        <div>The Curiosity Series</div>
+        <h1>The Curiosity Series</h1>
       </span>
     </md-toolbar>
 
     <div class="container" flex layout="row">
 
       <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
-        <div class="curiosities-list-pane" ng-include="'components/curiosities/curiosities.html'" ng-controller="CuriositiesController"></div>
+        <md-toolbar class="md-primary md-hue-1" ng-include="'components/curiosities/curiosities.html'" ng-controller="CuriositiesController"></md-toolbar>
       </md-sidenav>
 
       <md-content flex id="content">

@@ -2,6 +2,10 @@ body {
   font-family: 'Open Sans';
 }
 
+.toolbar-header {
+  text-align: center;
+}
+
 .curiosities-list-pane {
   margin-left: 10px;
 }

@@ -2,6 +2,12 @@
 
 var CuriositySeriesApp = angular.module("CuriositySeriesApp", ["ngRoute", "ngMaterial", "ngResource"]);
 
+CuriositySeriesApp.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme("default")
+    .primaryPalette("teal")
+    .accentPalette("deep-orange");
+});
+
 CuriositySeriesApp.config(["$routeProvider",
   function ($routeProvider) {
     $routeProvider.

@@ -1,9 +1,9 @@
 .curiosities-list {
-
+  margin-left: 10px;
 }
 
 .curiosity-in-list {
-  
+  color: white;
 }
 
 .curiosity-in-list:hover {
