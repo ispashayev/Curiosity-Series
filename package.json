@@ -4,6 +4,7 @@
   "description": "A web application for playing around with the Goldbach conjecture",
   "main": "webServer.js",
   "scripts": {
+    "start": "node webServer.js",
     "test": "echo Satisfy your curiosity by going to http://localhost:3000 in your browser",
     "jshint": "./node_modules/.bin/jshint --config .jshintrc --exclude=node_modules . || exit 0"
   },
