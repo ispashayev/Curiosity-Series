@@ -15,7 +15,7 @@ CuriositySeriesApp.controller('GoldbachConjectureController', ['$scope', '$resou
         success: false,
         message: ""
       };
-    }
+    };
 
     $scope.main.goldbach.recentResult = $scope.main.goldbach.resetResults;
 
