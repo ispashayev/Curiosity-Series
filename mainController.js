@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var CuriositySeriesApp = angular.module("CuriositySeriesApp", ["ngRoute", "ngMaterial", "ngResource"]);
 
@@ -27,6 +27,10 @@ CuriositySeriesApp.config(["$routeProvider",
         templateUrl: "components/riemann-hypothesis/riemann-hypothesis.html",
         controller: "RiemannHypothesisController"
       }).
+      when("/curiosities/graph-isomorphism", {
+        templateUrl: "components/graph-isomorphism/graph-isomorphism.html",
+        controller: "GraphIsomorphismController"
+      }).
       otherwise({
         redirectTo: "/home"
       });
@@ -42,6 +46,9 @@ CuriositySeriesApp.controller('MainController', ['$scope', '$location',
       switch (curiosityLink) {
         case "goldbach-conjecture":
           $location.path("/curiosities/goldbach-conjecture");
+          break;
+        case "graph-isomorphism":
+          $location.path("/curiosities/graph-isomorphism");
           break;
         case "riemann-hypothesis":
           $location.path("/curiosities/riemann-hypothesis");

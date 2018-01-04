@@ -23,7 +23,6 @@ fs.readFile("data/primes.dat", function (error, dataBuffer) {
 app.use(express.static(__dirname));
 
 app.get('/curiosities', function (request, response) {
-  /* TODO: Implement this with a NoSQL database (i.e. MongoDB) */
   var curiosities = [];
   var goldbachConjecture = {
     link: "goldbach-conjecture",
@@ -32,9 +31,14 @@ app.get('/curiosities', function (request, response) {
   var riemannHypothesis = {
     link: "riemann-hypothesis",
     name: "Riemann Hypothesis"
-  }
+  };
+  var graphIsomorphism = {
+    link: "graph-isomorphism",
+    name: "Graph Isomorphism"
+  };
   curiosities.push(goldbachConjecture);
   curiosities.push(riemannHypothesis);
+  curiosities.push(graphIsomorphism);
 
   response.status(200).send(curiosities);
 });
@@ -47,7 +51,7 @@ function getPrimeStructure(n) {
   };
 
   /* Simple brute force search. */
-  /* Maybe can optimize this by start at (n/2, n/2) (or around it)? */
+  /* TODO: Maybe can optimize this by starting at (n/2, n/2), or around it? */
   for (var i = 0; i < primes.length; i++) {
     for (var j = i; j < primes.length; j++) {
       if (primes[i] + primes[j] === n) {
@@ -62,7 +66,7 @@ function getPrimeStructure(n) {
 
   return result;
 
-};
+}
 
 app.get('/curiosities/goldbach/:n', function(request, response) {
   var n = request.params.n ? parseInt(request.params.n) : undefined;
@@ -71,9 +75,6 @@ app.get('/curiosities/goldbach/:n', function(request, response) {
     return;
   }
   /* Compute primes. */
-  /* TODO: This is a super baby version just to make sure things are working on
-           the front end. Implement this later on with a concurrently running
-           Python server that executes a Fortran script. */
   var result = getPrimeStructure(n);
   response.status(200).send(result);
 });

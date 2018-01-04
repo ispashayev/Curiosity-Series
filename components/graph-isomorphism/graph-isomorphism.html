@@ -1,0 +1,43 @@
+<h1 class="curiosity-title">Graph Isomorphism</h1>
+<div>
+  A <b>graph</b> is a pair of a set of <b>vertices</b> and a set of <b>edges</b>
+  among the vertices. It is commonly denoted $G=(V,E)$.
+</div>
+<br>
+<div>
+  You can use the following buttons to construct a graph.
+</div>
+<md-button class="md-primary md-raised" ng-click="main.graphIsomorphism.addVertex()">Add vertex</md-button>
+<md-button class="md-primary md-raised" ng-click="main.graphIsomorphism.addEdge()">Add edge</md-button>
+<br>
+<div ng-show="main.graphIsomorphism.addingVertex">
+  <label>
+    Enter a vertex:
+    <input type="text" ng-model="main.graphIsomorphism.vertexNew">
+  </label>
+  <br>
+  <md-button class="md-warn md-raised" ng-click="main.graphIsomorphism.submit()">Submit</md-button>
+</div>
+<div ng-show="main.graphIsomorphism.addingEdge">
+  <label>
+    First vertex in edge:
+    <input type="text" ng-model="main.graphIsomorphism.vertexOne">
+  </label>
+  <br>
+  <label>
+    Second vertex in edge:
+    <input type="text" ng-model="main.graphIsomorphism.vertexTwo">
+  </label>
+  <br>
+  <md-button class="md-warn md-raised" ng-click="main.graphIsomorphism.submit()">Submit</md-button>
+</div>
+<div id="cy-graph-isomorphism-1">
+</div>
+<br>
+</div>
+  Two graphs $G$ and $H$ are isomorphic if there exists a permutation
+  $$
+  p: V_G \rightarrow V_H
+  $$
+  such that for all edges $\{v,u\} \in E_G,\ \{p(v),p(u)\} \in E_H $
+</div>
