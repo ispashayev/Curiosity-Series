@@ -6,6 +6,8 @@
 
     "globals": { // Global variables.
         "CuriositySeriesApp": true,
+	"MathJax": true,
+	"cytoscape": true,
         "angular": true,
         "browser": true,
         "element": true,
