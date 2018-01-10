@@ -9,7 +9,7 @@ CuriositySeriesApp.config(function($mdThemingProvider) {
 });
 
 CuriositySeriesApp.config(["$routeProvider",
-  function ($routeProvider) {
+  function ($routeProvider, $mdThemingProvider) {
     $routeProvider.
       when("/home", {
         templateUrl: "components/home/home.html",

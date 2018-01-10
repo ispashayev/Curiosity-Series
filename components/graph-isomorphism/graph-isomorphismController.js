@@ -16,21 +16,10 @@ CuriositySeriesApp.controller("GraphIsomorphismController", ["$scope", "$rootSco
         vertexOne: undefined,
         vertexTwo: undefined
       };
+      
       $scope.main.graphIsomorphism.cygraph1 = cytoscape({
         container: document.getElementById("cy-graph-isomorphism-1"),
-        elements: [
-        { data: { id: 'a' } },
-        { data: { id: 'b' } },
-        { data: { id: 'c' } },
-        { data: { id: 'd' } },
-        { data: { id: 'e' } },
-        { data: { id: 'f' } },
-        { data: {
-            id: 'ab',
-            source: 'a',
-            target: 'b'
-          }
-        }],
+        elements: [],
         style: [{
           selector: "node",
           style: {
@@ -40,9 +29,11 @@ CuriositySeriesApp.controller("GraphIsomorphismController", ["$scope", "$rootSco
           }
         }]
       });
+
     };
 
     resetGraphIsomorphism();
+
 
     $scope.main.graphIsomorphism.addVertex = function() {
       $scope.main.graphIsomorphism.addingVertex = true;
@@ -61,21 +52,21 @@ CuriositySeriesApp.controller("GraphIsomorphismController", ["$scope", "$rootSco
         resetGraphIsomorphism();
       } else if ($scope.main.graphIsomorphism.addingVertex) {
         /* Add vertex */
-        $scope.main.graphIsomorphism.cygraph1.add([{
-          group: "nodes",
+        $scope.main.graphIsomorphism.cygraph1.add({
           data: {
             id: $scope.main.graphIsomorphism.vertexNew
           }
-        }]);
+        }).cy().layout({
+          name: 'random'
+        }).run();
       } else if ($scope.main.graphIsomorphism.addingEdge) {
         /* Add edge */
-        $scope.main.graphIsomorphism.cygraph1.add([{
-          group: "edges",
+        $scope.main.graphIsomorphism.cygraph1.add({
           data: {
             source: $scope.main.graphIsomorphism.vertexOne,
             target: $scope.main.graphIsomorphism.vertexTwo
           }
-        }])
+        });
       } else {
         /* This is also bad and shouldn't happen. Reset everything. */
         resetGraphIsomorphism();
